@@ -1,0 +1,30 @@
+version: '3.8'
+
+networks:
+  common-network:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: 2025_forester
+      MYSQL_USER: root
+    ports:
+      - "3306:3306"
+    networks:
+      - common-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: ""  # không có mật khẩu
+    networks:
+      - common-network
