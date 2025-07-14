@@ -1,0 +1,21 @@
+services:
+  postgis:
+    image: postgis/postgis:15-3.3
+    container_name: postgis-gis
+    environment:
+      POSTGRES_DB: gis_db
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+    networks:
+      - postgresql_common-network
+
+
+volumes:
+  postgis_data:
+
+networks:
+  postgresql_common-network:
+    external: true
