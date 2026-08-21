@@ -9,6 +9,9 @@ services:
       - 27017:27017
     networks:
       - common-network
+    volumes:
+      - mongo-data:/data/db
+      - mongo-config:/data/configdb
 
   mongo-express:
     image: mongo-express
@@ -27,3 +30,7 @@ services:
 networks:
   common-network:
     external: true
+
+volumes:
+  mongo-data:
+  mongo-config:
