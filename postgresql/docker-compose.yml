@@ -6,12 +6,13 @@ networks:
 
 services:
   db:
-    image: postgres:15
+    image: postgres:18
     container_name: postgres_container
     environment:
       POSTGRES_PASSWORD: 123456
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      # - postgres_data:/var/lib/postgresql/data # dành cho 15
+      - pgadmin_data:/var/lib/pgadmin
     ports:
       - "5432:5432"
     networks:
